@@ -20,7 +20,4 @@ public class StageBase : MonoBehaviour {
 			}
 		}
 	}
-	void Update () {
-		
-	}
 }

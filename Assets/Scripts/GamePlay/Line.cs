@@ -7,15 +7,19 @@ public class Line : MonoBehaviour {
 	float posy;
 	float posz;
 	GameObject ball;
+	public static bool alive;
 	void Start () {
+		alive = true;
 		ball = GameObject.Find("Ball");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		posx = ball.transform.position.x;
-		posy = ball.transform.position.y;
-		posz = ball.transform.position.z;
-		transform.position = new Vector3(posx, posy - 30, posz);
+		if ( alive ) {
+			posx = ball.transform.position.x;
+			posy = ball.transform.position.y;
+			posz = ball.transform.position.z;
+			transform.position = new Vector3(posx, posy - 40, posz);
+		}
 	}
 }
