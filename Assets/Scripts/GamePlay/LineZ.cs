@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LineZ : MonoBehaviour {
 	float posx;
-	float posy;
 	GameObject obj;
 	public static bool alive;
 	void Start () {
@@ -15,8 +14,7 @@ public class LineZ : MonoBehaviour {
 	void Update () {
 		if ( alive ) {
 			posx = obj.transform.position.x;
-			posy = obj.transform.position.y;
-			transform.position = new Vector3(posx, posy, 0f);
+			transform.position = new Vector3(posx, 0f, 0f);
 		}
 	}
 }

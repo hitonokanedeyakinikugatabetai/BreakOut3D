@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class StageBase : MonoBehaviour {
 	//x7 y10 z7
-	public int[,,] blocks = new int[10, 7, 7];
+	public int[,,] blocks = new int[5, 7, 7];
 	public GameObject normal;
 	void Start () {
 		CreateBlocks(blocks);
 	}
 	void CreateBlocks(int[,,] blocks) {
 		for ( int x = 0; x < 7; x++ ) {
-			for ( int y = 0; y < 10; y++ ) {
+			for ( int y = 0; y < 5; y++ ) {
 				for ( int z = 0; z < 7; z++ ) {
 					switch(blocks[y,x,z]) {
 						case 0 :

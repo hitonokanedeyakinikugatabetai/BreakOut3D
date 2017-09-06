@@ -16,7 +16,7 @@ public class GameManage : MonoBehaviour {
 		rem = 3;
 		remain.GetComponent<Text>().text = "ooo";
 		gameover.GetComponent<Text>().enabled = false;
-		//Instantiate(ball);
+		// Instantiate(ball);
 		// Instantiate(linex);
 		// Instantiate(liney);
 		// Instantiate(linez);
@@ -25,7 +25,6 @@ public class GameManage : MonoBehaviour {
 		//ゲームオーバー
 		if ( rem == -1 ) {
 			gameover.GetComponent<Text>().enabled = true;
-			Time.timeScale = 0;
 		}
 		if ( Input.GetKeyDown(KeyCode.Escape) ) {
 			SceneManager.LoadScene("GamePlay");

@@ -16,7 +16,7 @@ public class LineY : MonoBehaviour {
 		if ( alive ) {
 			posx = obj.transform.position.x;
 			posz = obj.transform.position.z;
-			transform.position = new Vector3(posx, 0f, posz);
+			transform.position = new Vector3(posx, 15f, posz);
 		}
 	}
 }
