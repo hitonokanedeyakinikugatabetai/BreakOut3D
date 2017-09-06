@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public float speed;
-	public float size;
+	float size;
 	void Start() {
 		size = transform.localScale.x;
 	}
