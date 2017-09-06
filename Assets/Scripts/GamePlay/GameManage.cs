@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManage : MonoBehaviour {
 	public GameObject remain;
@@ -12,8 +13,8 @@ public class GameManage : MonoBehaviour {
 	public GameObject liney;
 	public GameObject linez;
 	void Start () {
-		rem = 1;
-		remain.GetComponent<Text>().text = "●";
+		rem = 3;
+		remain.GetComponent<Text>().text = "ooo";
 		gameover.GetComponent<Text>().enabled = false;
 		//Instantiate(ball);
 		// Instantiate(linex);
@@ -25,6 +26,9 @@ public class GameManage : MonoBehaviour {
 		if ( rem == -1 ) {
 			gameover.GetComponent<Text>().enabled = true;
 			Time.timeScale = 0;
+		}
+		if ( Input.GetKeyDown(KeyCode.Escape) ) {
+			SceneManager.LoadScene("GamePlay");
 		}
 	}
 }

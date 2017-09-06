@@ -1,13 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	public float speed;
 	float size;
-	float mouse_x_delta;
-	float mouse_y_delta;
+	public float power;
+	public float mouse_x_delta;
+	public float mouse_y_delta;
 	public float sensitivity = 0.1f;
+	public float speed;
 	void Start() {
 		Cursor.visible = false;
 		size = transform.localScale.x;
@@ -27,6 +28,30 @@ public class Player : MonoBehaviour {
 		}
 		if ( mouse_y_delta < 0 && transform.position.z >= -14f + size / 2f ) {
 			transform.position += new Vector3(0f, 0f, mouse_y_delta);
+		}
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			GetComponent<Renderer>().material.color = new Color(50f / 255f, 50f / 255f, 255f / 255f);
+		}
+		if (Input.GetKeyUp(KeyCode.Space)) {
+			GetComponent<Renderer>().material.color = new Color(120f / 255f, 120f / 255f, 255f / 255f);
+		}
+	}
+	void OnCollisionEnter(Collision col) {
+		if ( col.gameObject.tag == "Ball" && Input.GetKey(KeyCode.Space) ) {
+			if ( mouse_x_delta > 0 ) {
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(speed, 0f, 0f));
+			}
+			if ( mouse_x_delta < 0 ) {
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(speed, 0f, 0f));
+			}
+			if ( mouse_y_delta > 0 ) {
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, speed));
+			}
+			if ( mouse_y_delta < 0 ) {
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, speed));
+			}
+			//上向きの力
+			col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, power, 0f));
 		}
 	}
 }

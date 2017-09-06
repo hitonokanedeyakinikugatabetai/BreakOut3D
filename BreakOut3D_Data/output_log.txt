@@ -15,14 +15,26 @@ Platform assembly: C:\Users\16T273\OneDrive\OSC\BreakOut3D\BreakOut3D_Data\Manag
 Loading C:\Users\16T273\OneDrive\OSC\BreakOut3D\BreakOut3D_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\16T273\OneDrive\OSC\BreakOut3D\BreakOut3D_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\16T273\OneDrive\OSC\BreakOut3D\BreakOut3D_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.306 seconds
+- Completed reload, in  0.291 seconds
 Platform assembly: C:\Users\16T273\OneDrive\OSC\BreakOut3D\BreakOut3D_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\16T273\OneDrive\OSC\BreakOut3D\BreakOut3D_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.609171 ms
+UnloadTime: 4.360104 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: e6c -> priority: 1 
-  Thread -> id: 71c -> priority: 1 
+  Thread -> id: 10ec -> priority: 1 
+  Thread -> id: 35e4 -> priority: 1 
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 9.164369 ms
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 380.
+Total: 0.312746 ms (FindLiveObjects: 0.033706 ms CreateObjectMapping: 0.022613 ms MarkObjects: 0.229119 ms  DeleteObjects: 0.026453 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.969384 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 380.
+Total: 0.272639 ms (FindLiveObjects: 0.030719 ms CreateObjectMapping: 0.021759 ms MarkObjects: 0.197546 ms  DeleteObjects: 0.022186 ms)
+
