@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
-	public Vector3 first;
-	public GameObject linex, liney, linez;
-	public float power;
-	public static bool alive; 
+	public Vector3 first; // 初速度
+	public GameObject linex, liney, linez; // ガイドラインプレハブ
+	public float power; // プレイヤーの反射の力
+	public static bool alive; // ボールが底に落ちていないかどうか
 	void Start () {
-		alive = true;
-		transform.GetComponent<Rigidbody>().velocity = first;
+		alive = true; // ボールの生存を初期化
+		transform.GetComponent<Rigidbody>().velocity = first; // 初速度を追加
 	}
 	//衝突判定
 	void OnCollisionEnter(Collision col) {
-		//上向きの力
+		// プレイヤーに当たったとき上向きの力を加える
 		if ( col.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space) ) {
 			this.GetComponent<Rigidbody>().AddForce(new Vector3(0f, power, 0f));
 		}
@@ -24,6 +24,7 @@ public class Ball : MonoBehaviour {
 			if ( GameManage.rem > -1 ) {
 				transform.position = new Vector3(0f, 5f, 0f);
 				GetComponent<Rigidbody>().velocity = first;
+				// 残機の減少
 				if ( GameManage.rem == 2 ) {
 					GameObject.Find("Remain").GetComponent<Text>().text = "oo";
 				} else if ( GameManage.rem == 1 ) {
