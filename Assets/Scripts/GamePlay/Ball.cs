@@ -8,15 +8,24 @@ public class Ball : MonoBehaviour {
 	public GameObject linex, liney, linez; // ガイドラインプレハブ
 	public float power; // プレイヤーの反射の力
 	public static bool alive; // ボールが底に落ちていないかどうか
+	private AudioSource audioSource;    // Audiosorceを格納する変数の宣
 	void Start () {
+		audioSource = GetComponent<AudioSource>();	// AudioSourceコンポーネントを追加し、変数に代入
 		alive = true; // ボールの生存を初期化
 		transform.GetComponent<Rigidbody>().velocity = first; // 初速度を追加
 	}
 	//衝突判定
 	void OnCollisionEnter(Collision col) {
 		// プレイヤーに当たったとき上向きの力を加える
-		if ( col.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space) ) {
-			this.GetComponent<Rigidbody>().AddForce(new Vector3(0f, power, 0f));
+		// if ( col.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space) ) {
+		// 	this.GetComponent<Rigidbody>().AddForce(new Vector3(0f, power, 0f));
+		// }
+		if ( col.gameObject.tag == "Normal" ) {
+			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
+			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
+			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
+			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
+			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
 		}
 		if ( col.gameObject.tag == "Bottom" ) {
 			//残機が0でないならリスタート
