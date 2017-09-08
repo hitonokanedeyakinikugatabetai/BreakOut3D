@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
 			GetComponent<Renderer>().material.color = new Color(120f / 255f, 120f / 255f, 255f / 255f);
 		}
 		// debug用オートパイロット
-		transform.position = new Vector3(ball.transform.position.x, 0f, ball.transform.position.z);
+		//transform.position = new Vector3(ball.transform.position.x, 0f, ball.transform.position.z);
 	}
 	// 衝突判定
 	void OnCollisionEnter(Collision col) {
@@ -51,13 +51,13 @@ public class Player : MonoBehaviour {
 				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(speed, 0f, 0f));
 			}
 			if ( mouse_x_delta < 0 ) {
-				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(speed, 0f, 0f));
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-1f * speed, 0f, 0f));
 			}
 			if ( mouse_y_delta > 0 ) {
 				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, speed));
 			}
 			if ( mouse_y_delta < 0 ) {
-				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, speed));
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, -1f * speed));
 			}
 			//上向きの力
 			col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, power, 0f));
