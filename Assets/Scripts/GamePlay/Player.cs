@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	float size; // プレイヤーのサイズ
-	public float power; // 
-	public float mouse_x_delta;
-	public float mouse_y_delta;
-	public float sensitivity = 0.1f;
-	public float speed;
-	private GameObject ball;
+	private float size; // プレイヤーのサイズ
+	public float power; // 反射の力
+	private float mouse_x_delta; // マウス座標の変化量
+	private float mouse_y_delta;
+	public float sensitivity = 0.1f; // 倍率
+	public float speed; // 移動に応じて追加する速度の倍率
 	void Start() {
+		// マウスカーソルを映さない
 		Cursor.visible = false;
+		// プレイヤーのサイズ
 		size = transform.localScale.x;
-		ball = GameObject.FindWithTag("Ball");
 	}
 	//マウス移動
 	void Update () {
@@ -45,22 +45,15 @@ public class Player : MonoBehaviour {
 	}
 	// 衝突判定
 	void OnCollisionEnter(Collision col) {
-		// ボールに当たったとき移動方向に力を加える
-		if ( col.gameObject.tag == "Ball" && Input.GetKey(KeyCode.Space) ) {
-			if ( mouse_x_delta > 0 ) {
-				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(speed, 0f, 0f));
+		// ボールに当たったとき
+		if ( col.gameObject.tag == "Ball" ) {
+			if ( Input.GetKey(KeyCode.Space) ) {
+				//上向きの力と前後左右の力
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(speed * mouse_x_delta, power, speed * mouse_y_delta));
+			} else {
+				// 前後左右の力のみ
+				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(speed * mouse_x_delta, 0f, speed * mouse_y_delta));
 			}
-			if ( mouse_x_delta < 0 ) {
-				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-1f * speed, 0f, 0f));
-			}
-			if ( mouse_y_delta > 0 ) {
-				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, speed));
-			}
-			if ( mouse_y_delta < 0 ) {
-				col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, -1f * speed));
-			}
-			//上向きの力
-			col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f, power, 0f));
 		}
 	}
 }

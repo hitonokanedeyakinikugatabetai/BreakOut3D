@@ -6,17 +6,13 @@ public class LineY : MonoBehaviour {
 	float posx;
 	float posz;
 	GameObject obj;
-	public static bool alive;
 	void Start () {
-		alive = true;
-		obj = GameObject.Find("Ball");
+		obj = GameObject.Find("Ball(Clone)");
 	}
 	//追従
 	void Update () {
-		if ( alive ) {
 			posx = obj.transform.position.x;
 			posz = obj.transform.position.z;
 			transform.position = new Vector3(posx, 15f, posz);
-		}
 	}
 }

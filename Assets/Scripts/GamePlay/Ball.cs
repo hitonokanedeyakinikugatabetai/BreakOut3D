@@ -5,53 +5,48 @@ using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
 	public Vector3 first; // 初速度
-	public GameObject linex, liney, linez; // ガイドラインプレハブ
-	public float power; // プレイヤーの反射の力
-	public static bool alive; // ボールが底に落ちていないかどうか
-	private AudioSource audioSource;    // Audiosorceを格納する変数の宣
+	public GameObject lineX, lineY, lineZ; // ガイドラインプレハブ
+	private GameObject player; // プレイヤー
+	private AudioSource normalSound; // 効果音
 	void Start () {
-		audioSource = GetComponent<AudioSource>();	// AudioSourceコンポーネントを追加し、変数に代入
-		alive = true; // ボールの生存を初期化
+		normalSound = GetComponent<AudioSource>();
+		player = GameObject.Find("Player(Clone)");
 		transform.GetComponent<Rigidbody>().velocity = first; // 初速度を追加
+		// プレイヤーの位置にガイドライン生成
+		Instantiate(lineX, player.transform.position, lineX.transform.rotation);
+		Instantiate(lineY, player.transform.position, lineY.transform.rotation);
+		Instantiate(lineZ, player.transform.position, lineZ.transform.rotation);
+		lineX = GameObject.Find("LineX(Clone)");
+		lineY = GameObject.Find("LineY(Clone)");
+		lineZ = GameObject.Find("LineZ(Clone)");
 	}
 	//衝突判定
 	void OnCollisionEnter(Collision col) {
-		// プレイヤーに当たったとき上向きの力を加える
-		// if ( col.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space) ) {
-		// 	this.GetComponent<Rigidbody>().AddForce(new Vector3(0f, power, 0f));
-		// }
-		if ( col.gameObject.tag == "Normal" ) {
-			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
-			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
-			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
-			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
-			AudioSource.PlayClipAtPoint(audioSource.clip, transform.position); 
-		}
+		// 床に当たったとき残機を減らして消去
 		if ( col.gameObject.tag == "Bottom" ) {
-			//残機が0でないならリスタート
-			GameManage.rem--;
-			if ( GameManage.rem > -1 ) {
-				transform.position = new Vector3(0f, 5f, 0f);
-				GetComponent<Rigidbody>().velocity = first;
-				// 残機の減少
-				if ( GameManage.rem == 2 ) {
-					GameObject.Find("Remain").GetComponent<Text>().text = "oo";
-				} else if ( GameManage.rem == 1 ) {
-					GameObject.Find("Remain").GetComponent<Text>().text = "o";
-				} else if ( GameManage.rem == 0 ) {
-					GameObject.Find("Remain").GetComponent<Text>().text = "";
-				}
-			} else {
-				//残機が0なら削除
-				LineX.alive = false;
-				LineY.alive = false;
-				LineZ.alive = false;
-				Destroy(linex.gameObject);
-				Destroy(liney.gameObject);
-				Destroy(linez.gameObject);
-				alive = false;
-  				Destroy(gameObject);
+			GameManager.rem--;
+			GameManager.ballAlive = false;
+			// 残機表示の更新
+			if ( GameManager.rem == 2 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "oo";
+			} else if ( GameManager.rem == 1 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "o";
+			} else if ( GameManager.rem == 0 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "";
 			}
+			// 消去
+			Destroy(lineX.gameObject);
+			Destroy(lineY.gameObject);
+			Destroy(lineZ.gameObject);
+			Destroy(gameObject);
+		}
+		// ノーマルブロックに当たったとき
+		if ( col.gameObject.tag == "Normal" ) {
+			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 		}
 	}
 }
