@@ -11,7 +11,13 @@ public class GameManager : MonoBehaviour {
 	public static bool ballAlive; // ボールが消えているかどうか
 	public GameObject player; // プレイヤー
 	public GameObject ball; // ボール
+	private BlocksMaker blocksMaker;
+	public int stageNum;
 	void Start () {
+		// ステージの番号を設定
+		stageNum = 1;
+		// ステージ番号のブロック配置の読み込み
+		blocksMaker = new BlocksMaker(stageNum);
 		rem = 3; // 残機初期化
 		remain.GetComponent<Text>().text = "ooo"; // 残機表示初期化
 		gameover.GetComponent<Text>().enabled = false; // ゲームオーバーを非表示に初期化
@@ -20,7 +26,7 @@ public class GameManager : MonoBehaviour {
 		Instantiate(ball);
 		ballAlive = true;
 		// ブロック生成
-
+		blocksMaker.makeBlocks();
 	}
 	void Update () {
 		// ボールが消えているならBでボール生成
