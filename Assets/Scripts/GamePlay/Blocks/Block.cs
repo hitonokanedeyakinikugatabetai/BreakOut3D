@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 全ブロックの親クラス
 public class Block : MonoBehaviour {
 	protected int hp;
 	//衝突判定
