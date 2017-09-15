@@ -9,7 +9,9 @@ public class Player : MonoBehaviour {
 	private float mouse_y_delta;
 	public float sensitivity = 0.1f; // 倍率
 	public float speed; // 移動に応じて追加する速度の倍率
+	private Material material;
 	void Start() {
+		material = GetComponent<Renderer>().material;
 		// マウスカーソルを映さない
 		Cursor.visible = false;
 		// プレイヤーのサイズ
@@ -34,14 +36,15 @@ public class Player : MonoBehaviour {
 		}
 		// スペースキーを押したら色変更
 		if ( Input.GetKeyDown(KeyCode.Space) ) {
-			GetComponent<Renderer>().material.color = new Color(50f / 255f, 50f / 255f, 255f / 255f);
+			material.color = new Color(120f / 255f, 120f / 255f, 255f / 255f);
 		}
 		// スペースキーを離したら色変更
 		if ( Input.GetKeyUp(KeyCode.Space) ) {
-			GetComponent<Renderer>().material.color = new Color(120f / 255f, 120f / 255f, 255f / 255f);
+			material.color = new Color(50f / 255f, 50f / 255f, 255f / 255f);
 		}
 		// debug用オートパイロット
-		//transform.position = new Vector3(ball.transform.position.x, 0f, ball.transform.position.z);
+		GameObject ball = GameObject.Find("Ball(Clone)");
+		transform.position = new Vector3(ball.transform.position.x, 0f, ball.transform.position.z);
 	}
 	// 衝突判定
 	void OnCollisionEnter(Collision col) {

@@ -53,4 +53,26 @@ public class Stage01 {
 		{0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0}
 	};
+	public int ct = 0;
+	public Stage01() {
+		ct += blockCount(yx0);
+		ct += blockCount(yx1);
+		ct += blockCount(yx2);
+		ct += blockCount(yx3);
+		ct += blockCount(yx4);
+		ct += blockCount(yx5);
+		ct += blockCount(yx6);
+		GameManager.blockCt = ct;
+	}
+	int blockCount(int[,] yx) {
+		int ct = 0;
+		for ( int y = 0; y < 5; y++ ) {
+			for ( int x = 0; x < 7; x++ ) {
+				if ( yx[y,x] != 0 ) {
+					ct++;
+				}
+			}
+		}
+		return ct;
+	}
 }

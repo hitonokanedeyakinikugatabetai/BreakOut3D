@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 全ブロックの親クラス
 public class Block : MonoBehaviour {
@@ -8,6 +9,8 @@ public class Block : MonoBehaviour {
 	//衝突判定
 	void OnCollisionEnter(Collision col){
 		if ( col.gameObject.tag == "Ball" && hp == 1 ) {
+			GameManager.blockCt--;
+			GameObject.Find("BlockCount").GetComponent<Text>().text = "残り " + GameManager.blockCt.ToString();
   			Destroy(gameObject);
 		} else {
 			hp--;
