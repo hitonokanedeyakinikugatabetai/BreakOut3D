@@ -43,8 +43,8 @@ public class Player : MonoBehaviour {
 			material.color = new Color(50f / 255f, 50f / 255f, 255f / 255f);
 		}
 		// debug用オートパイロット
-		GameObject ball = GameObject.Find("Ball(Clone)");
-		transform.position = new Vector3(ball.transform.position.x, 0f, ball.transform.position.z);
+		// GameObject ball = GameObject.Find("Ball(Clone)");
+		// transform.position = new Vector3(ball.transform.position.x, 0f, ball.transform.position.z);
 	}
 	// 衝突判定
 	void OnCollisionEnter(Collision col) {

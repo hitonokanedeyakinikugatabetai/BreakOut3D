@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BlocksMaker : MonoBehaviour {
 	//横x7 縦y5 奥z7
+	int lenX = 7;
+	int lenY = 5;
+	int LenZ = 7;
 	private int stageNum;
 	private int[,] yx0;
 	private int[,] yx1;
@@ -14,11 +17,15 @@ public class BlocksMaker : MonoBehaviour {
 	private int[,] yx6;
 	private BlocksHolder blocksHolder; // ブロックまとめ
 	private GameObject normal; // ブロックのプレハブ
+	private GameObject safeFloorBlock;
+	private GameObject ballAdderBlock;
 	private Stage01 stage01 = new Stage01(); // ブロックの配置
 	public BlocksMaker(int stageNum) {
 		// ブロックを貰ってくる
 		blocksHolder = GameObject.Find("GameManager").GetComponent<BlocksHolder>();
-		normal = blocksHolder.normal;
+		normal = blocksHolder.blocks[0];
+		safeFloorBlock = blocksHolder.blocks[1];
+		ballAdderBlock = blocksHolder.blocks[2];
 		// 選んだステージのブロック配置をコピー
 		switch( stageNum ) {
 			case 1 :
@@ -46,13 +53,22 @@ public class BlocksMaker : MonoBehaviour {
 
 	}
 	void makeSquare(int[,] yx, int z) {
-		for ( int y = 0; y < 5; y++ ) {
-			for ( int x = 0; x < 7; x++ ) {
+		for ( int y = 0; y < lenY; y++ ) {
+			for ( int x = 0; x < lenX; x++ ) {
+				float posx = -11f + x * 3.5f;
+				float posy = 43.5f - y * 1.5f;
+				float posz = -12.5f + z * 3.5f;
 				switch( yx[y,x] ) {
 					case 0 :
 						break;
 					case 1 :
-						Instantiate(normal, new Vector3(-11f + x * 3.5f , 43.5f - y * 1.5f, -12.5f + z * 3.5f ), Quaternion.identity);
+						Instantiate(normal, new Vector3(posx , posy, posz), Quaternion.identity);
+						break;
+					case 2 :
+						Instantiate(safeFloorBlock, new Vector3(posx , posy, posz), Quaternion.identity);
+						break;
+					case 3 :
+						Instantiate(ballAdderBlock, new Vector3(posx , posy, posz), Quaternion.identity);
 						break;
 				}
 			}
