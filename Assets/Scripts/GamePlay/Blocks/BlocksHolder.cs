@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class BlocksHolder : MonoBehaviour {
 	// ブロックのプレハブを持たせる
-	public GameObject normal;
+	public GameObject[] blocks;
 }

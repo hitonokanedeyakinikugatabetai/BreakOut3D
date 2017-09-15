@@ -20,6 +20,16 @@ public class Ball : MonoBehaviour {
 		lineY = GameObject.Find("LineY(Clone)");
 		lineZ = GameObject.Find("LineZ(Clone)");
 	}
+	void Update() {
+		// ブロックが0個なら
+		if ( GameManager.blockCt == 0 ) {
+			// 消去
+			Destroy(lineX.gameObject);
+			Destroy(lineY.gameObject);
+			Destroy(lineZ.gameObject);
+			Destroy(gameObject);
+		}
+	}
 	//衝突判定
 	void OnCollisionEnter(Collision col) {
 		// 床に当たったとき残機を減らして消去
