@@ -19,7 +19,7 @@ public class SafeFloorBlock : Block {
 	void makeSafeFloor() {
 		for ( int z = 0; z < 3; z++ ) {
 			for ( int x = 0; x < 3; x++ ) {
-				Instantiate(safeFloor, new Vector3(-10f + x * 10f, -2f, -10f + z * 10f) , Quaternion.identity);
+				Instantiate(safeFloor, new Vector3(-10f + x * 10f, -2.5f, -10f + z * 10f) , Quaternion.identity);
 			}
 		}
 	}
