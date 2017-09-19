@@ -36,14 +36,6 @@ public class Ball : MonoBehaviour {
 		if ( col.gameObject.tag == "Bottom" ) {
 			GameManager.rem--;
 			GameManager.ballAlive = false;
-			// 残機表示の更新
-			if ( GameManager.rem == 2 ) {
-				GameObject.Find("Remain").GetComponent<Text>().text = "oo";
-			} else if ( GameManager.rem == 1 ) {
-				GameObject.Find("Remain").GetComponent<Text>().text = "o";
-			} else if ( GameManager.rem == 0 ) {
-				GameObject.Find("Remain").GetComponent<Text>().text = "";
-			}
 			// 消去
 			Destroy(lineX.gameObject);
 			Destroy(lineY.gameObject);

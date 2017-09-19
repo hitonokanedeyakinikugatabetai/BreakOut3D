@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 		// ステージ番号のブロック配置の読み込み
 		blocksMaker = new BlocksMaker(stageNum);
 		rem = 3; // 残機初期化
-		remain.GetComponent<Text>().text = "ooo"; // 残機表示初期化
+		remain.GetComponent<Text>().text = "●●●"; // 残機表示初期化
 		gameover.GetComponent<Text>().enabled = false; // ゲームオーバーを非表示に初期化
 		clear.GetComponent<Text>().enabled = false; // ゲームクリアを非表示に初期化
 		GameObject.Find("BlockCount").GetComponent<Text>().text = "REST " + GameManager.blockCt.ToString();
@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour {
 		if ( ballAlive == false && Input.GetKeyDown(KeyCode.B) && rem > -1) {
 			Instantiate(ball);
 			ballAlive = true;
+			// 残機表示の更新
+			if ( GameManager.rem == 2 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "●●";
+			} else if ( GameManager.rem == 1 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "●";
+			} else if ( GameManager.rem == 0 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "";
+			}
 		}
 		if ( blockCt == 0 ) {
 			clear.GetComponent<Text>().enabled = true; // 表示

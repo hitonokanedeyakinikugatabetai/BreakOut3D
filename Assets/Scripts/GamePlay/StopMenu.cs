@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StopMenu : MonoBehaviour {
-	Canvas menu;
-	int sceneIndex;
+	private Canvas menu;
+	private int sceneIndex;
 	void Start() {
 		sceneIndex = SceneManager.GetActiveScene().buildIndex;
 		menu = GetComponent<Canvas>();
