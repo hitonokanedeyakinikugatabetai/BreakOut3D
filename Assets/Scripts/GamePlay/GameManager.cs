@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 	public GameObject remain; // 残機表示オブジェクト
@@ -16,6 +15,8 @@ public class GameManager : MonoBehaviour {
 	public int stageNum;
 	public static int blockCt;
 	void Start () {
+		// マウスカーソルを映さない
+		Cursor.visible = false;
 		// ステージの番号を設定
 		stageNum = 1;
 		// ステージ番号のブロック配置の読み込み
@@ -44,10 +45,6 @@ public class GameManager : MonoBehaviour {
 		//ゲームオーバー
 		if ( rem == -1 ) {
 			gameover.GetComponent<Text>().enabled = true; // 表示
-		}
-		// テスト用 escapeでシーン再読込み
-		if ( Input.GetKeyDown(KeyCode.Escape) ) {
-			SceneManager.LoadScene("GamePlay");
 		}
 	}
 }
