@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 		remain.GetComponent<Text>().text = "ooo"; // 残機表示初期化
 		gameover.GetComponent<Text>().enabled = false; // ゲームオーバーを非表示に初期化
 		clear.GetComponent<Text>().enabled = false; // ゲームクリアを非表示に初期化
-		GameObject.Find("BlockCount").GetComponent<Text>().text = "残り " + GameManager.blockCt.ToString();
+		GameObject.Find("BlockCount").GetComponent<Text>().text = "REST " + GameManager.blockCt.ToString();
 		// プレイヤーとボールを生成
 		Instantiate(player);
 		Instantiate(ball);

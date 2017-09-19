@@ -12,7 +12,7 @@ public class SafeFloorBlock : Block {
 		if ( col.gameObject.tag == "Ball" ) {
 			makeSafeFloor();
 			GameManager.blockCt--;
-			GameObject.Find("BlockCount").GetComponent<Text>().text = "残り " + GameManager.blockCt.ToString();
+			GameObject.Find("BlockCount").GetComponent<Text>().text = "REST " + GameManager.blockCt.ToString();
   			Destroy(gameObject);
 		}
 	}

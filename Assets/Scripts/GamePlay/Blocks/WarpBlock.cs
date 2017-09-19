@@ -11,7 +11,7 @@ public class WarpBlock : Block {
 	void OnCollisionEnter(Collision col){
 		if ( col.gameObject.tag == "Ball" ) {
 			GameManager.blockCt--;
-			GameObject.Find("BlockCount").GetComponent<Text>().text = "残り " + GameManager.blockCt.ToString();
+			GameObject.Find("BlockCount").GetComponent<Text>().text = "REST " + GameManager.blockCt.ToString();
 			Instantiate(warpZone);
   			Destroy(gameObject);
 		}
