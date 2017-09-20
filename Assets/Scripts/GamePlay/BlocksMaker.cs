@@ -6,7 +6,6 @@ public class BlocksMaker : MonoBehaviour {
 	//横x7 縦y5 奥z7
 	int lenX = 7;
 	int lenY = 5;
-	int LenZ = 7;
 	private int stageNum;
 	private int[,] yx0;
 	private int[,] yx1;

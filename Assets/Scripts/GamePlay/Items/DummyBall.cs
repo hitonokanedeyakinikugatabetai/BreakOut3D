@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class DummyBall : MonoBehaviour {
 public Vector3 first; // 初速度
-	private GameObject player; // プレイヤー
 	private AudioSource normalSound; // 効果音
 	void Start () {
 		normalSound = GetComponent<AudioSource>();
-		player = GameObject.Find("Player(Clone)");
 		transform.GetComponent<Rigidbody>().velocity = first; // 初速度を追加
 	}
 	void Update() {
