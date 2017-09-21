@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 	public GameObject remain; // 残機表示オブジェクト
@@ -16,15 +15,17 @@ public class GameManager : MonoBehaviour {
 	public int stageNum;
 	public static int blockCt;
 	void Start () {
+		// マウスカーソルを映さない
+		Cursor.visible = false;
 		// ステージの番号を設定
 		stageNum = 1;
 		// ステージ番号のブロック配置の読み込み
 		blocksMaker = new BlocksMaker(stageNum);
 		rem = 3; // 残機初期化
-		remain.GetComponent<Text>().text = "ooo"; // 残機表示初期化
+		remain.GetComponent<Text>().text = "●●●"; // 残機表示初期化
 		gameover.GetComponent<Text>().enabled = false; // ゲームオーバーを非表示に初期化
 		clear.GetComponent<Text>().enabled = false; // ゲームクリアを非表示に初期化
-		GameObject.Find("BlockCount").GetComponent<Text>().text = "残り " + GameManager.blockCt.ToString();
+		GameObject.Find("BlockCount").GetComponent<Text>().text = "REST " + GameManager.blockCt.ToString();
 		// プレイヤーとボールを生成
 		Instantiate(player);
 		Instantiate(ball);
@@ -37,6 +38,14 @@ public class GameManager : MonoBehaviour {
 		if ( ballAlive == false && Input.GetKeyDown(KeyCode.B) && rem > -1) {
 			Instantiate(ball);
 			ballAlive = true;
+			// 残機表示の更新
+			if ( GameManager.rem == 2 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "●●";
+			} else if ( GameManager.rem == 1 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "●";
+			} else if ( GameManager.rem == 0 ) {
+				GameObject.Find("Remain").GetComponent<Text>().text = "";
+			}
 		}
 		if ( blockCt == 0 ) {
 			clear.GetComponent<Text>().enabled = true; // 表示
@@ -44,10 +53,6 @@ public class GameManager : MonoBehaviour {
 		//ゲームオーバー
 		if ( rem == -1 ) {
 			gameover.GetComponent<Text>().enabled = true; // 表示
-		}
-		// テスト用 escapeでシーン再読込み
-		if ( Input.GetKeyDown(KeyCode.Escape) ) {
-			SceneManager.LoadScene("GamePlay");
 		}
 	}
 }

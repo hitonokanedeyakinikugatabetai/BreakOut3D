@@ -6,7 +6,6 @@ public class BlocksMaker : MonoBehaviour {
 	//横x7 縦y5 奥z7
 	int lenX = 7;
 	int lenY = 5;
-	int LenZ = 7;
 	private int stageNum;
 	private int[,] yx0;
 	private int[,] yx1;
@@ -19,6 +18,7 @@ public class BlocksMaker : MonoBehaviour {
 	private GameObject normal; // ブロックのプレハブ
 	private GameObject safeFloorBlock;
 	private GameObject ballAdderBlock;
+	private GameObject warpBlock;
 	private Stage01 stage01 = new Stage01(); // ブロックの配置
 	public BlocksMaker(int stageNum) {
 		// ブロックを貰ってくる
@@ -26,6 +26,7 @@ public class BlocksMaker : MonoBehaviour {
 		normal = blocksHolder.blocks[0];
 		safeFloorBlock = blocksHolder.blocks[1];
 		ballAdderBlock = blocksHolder.blocks[2];
+		warpBlock = blocksHolder.blocks[3];
 		// 選んだステージのブロック配置をコピー
 		switch( stageNum ) {
 			case 1 :
@@ -69,6 +70,9 @@ public class BlocksMaker : MonoBehaviour {
 						break;
 					case 3 :
 						Instantiate(ballAdderBlock, new Vector3(posx , posy, posz), Quaternion.identity);
+						break;
+					case 4 :
+						Instantiate(warpBlock, new Vector3(posx , posy, posz), Quaternion.identity);
 						break;
 				}
 			}

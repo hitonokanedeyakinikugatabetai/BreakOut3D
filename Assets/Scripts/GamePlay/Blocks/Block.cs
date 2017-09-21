@@ -10,7 +10,7 @@ public class Block : MonoBehaviour {
 	void OnCollisionEnter(Collision col){
 		if ( col.gameObject.tag == "Ball" && hp == 1 ) {
 			GameManager.blockCt--;
-			GameObject.Find("BlockCount").GetComponent<Text>().text = "残り " + GameManager.blockCt.ToString();
+			GameObject.Find("BlockCount").GetComponent<Text>().text = "REST " + GameManager.blockCt.ToString();
   			Destroy(gameObject);
 		} else {
 			hp--;
