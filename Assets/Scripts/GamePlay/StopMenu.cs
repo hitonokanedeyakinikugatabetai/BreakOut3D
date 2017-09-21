@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StopMenu : MonoBehaviour {
+	public GameObject fadeOut;
 	private Canvas menu;
-	private int sceneIndex;
 	void Start() {
-		sceneIndex = SceneManager.GetActiveScene().buildIndex;
 		menu = GetComponent<Canvas>();
 		menu.enabled = false;
 	}
@@ -26,15 +25,21 @@ public class StopMenu : MonoBehaviour {
 	}
 	public void stageSelect() {
 		Time.timeScale = 1;
-		SceneManager.LoadScene("Menu");
+		Instantiate(fadeOut);
+		StartCoroutine(GoToNextScene(1));
 	}
 	public void retry() {
 		Time.timeScale = 1;
-		SceneManager.LoadScene(sceneIndex);
+		Instantiate(fadeOut);
+		StartCoroutine(GoToNextScene(2));
 	}
 	public void resume() {
 		menu.enabled = false;
 		Cursor.visible = false;
 		Time.timeScale = 1;
+	}
+	IEnumerator GoToNextScene(int index) {
+		yield return new WaitForSeconds (1f);
+		SceneManager.LoadScene (index);
 	}
 }

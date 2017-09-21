@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour {
 	private BlocksMaker blocksMaker;
 	public int stageNum;
 	public static int blockCt;
+	public GameObject fadeIn;
 	void Start () {
+		Instantiate(fadeIn);
 		// マウスカーソルを映さない
 		Cursor.visible = false;
 		// ステージの番号を設定
