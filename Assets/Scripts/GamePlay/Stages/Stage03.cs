@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage01 : Stage {
+public class Stage03 : Stage {
 	// 正面から見たyx平面
 	public int[,] yx0 = {
 		{0,0,0,0,0,0,0},
@@ -55,7 +55,7 @@ public class Stage01 : Stage {
 	};
 	public int ct = 0;
 	// ブロック数をカウント
-	public Stage01() {
+	public Stage03() {
 		ct += blockCount(yx0);
 		ct += blockCount(yx1);
 		ct += blockCount(yx2);

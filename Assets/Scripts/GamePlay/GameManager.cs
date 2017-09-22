@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject player; // プレイヤー
 	public GameObject ball; // ボール
 	private BlocksMaker blocksMaker;
-	public int stageNum;
+	private int stageNum;
 	public static int blockCt;
 	public GameObject fadeIn;
 	void Start () {
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 		// マウスカーソルを映さない
 		Cursor.visible = false;
 		// ステージの番号を設定
-		stageNum = 1;
+		stageNum = StageSelect.stageNum;
 		// ステージ番号のブロック配置の読み込み
 		blocksMaker = new BlocksMaker(stageNum);
 		rem = 3; // 残機初期化
