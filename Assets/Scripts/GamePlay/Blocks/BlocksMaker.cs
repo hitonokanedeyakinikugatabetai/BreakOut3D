@@ -81,7 +81,7 @@ public class BlocksMaker : MonoBehaviour {
 		}
 	}
 	// ブロック生成用関数
-	// 0空白,1ノーマル,2~特殊
+	// 0空白,1ノーマル,2床,3ボール,4ワープ
 	public void makeBlocks() {
 		int z = 0;
 		makeSquare(yx0, z++);
