@@ -29,7 +29,6 @@ public Vector3 first; // 初速度
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
-			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 		}
 	}
 }
