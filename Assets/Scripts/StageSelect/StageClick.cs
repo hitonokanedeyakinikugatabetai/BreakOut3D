@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StageClick : MonoBehaviour {
-	public void numClick() {
-		StageSelect.stageNum = Int32.Parse(transform.Find("Text").gameObject.GetComponent<Text>().text);
-		StartCoroutine(GoToNextScene(0));
+	public void numClick(int num) {
+		StageSelect.stageNum = num;
+		StartCoroutine(GoToNextScene(2));
 	}
 
 	IEnumerator GoToNextScene(int index) {
