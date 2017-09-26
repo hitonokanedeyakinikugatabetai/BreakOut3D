@@ -19,6 +19,7 @@ public class BlocksMaker : MonoBehaviour {
 	private GameObject safeFloorBlock;
 	private GameObject ballAdderBlock;
 	private GameObject warpBlock;
+	private GameObject hard;
 	public BlocksMaker(int stageNum) {
 		// ブロックを貰ってくる
 		blocksHolder = GameObject.Find("GameManager").GetComponent<BlocksHolder>();
@@ -26,17 +27,28 @@ public class BlocksMaker : MonoBehaviour {
 		safeFloorBlock = blocksHolder.blocks[1];
 		ballAdderBlock = blocksHolder.blocks[2];
 		warpBlock = blocksHolder.blocks[3];
+		hard = blocksHolder.blocks[4];
 		// 選んだステージのブロック配置をコピー
 		switch( stageNum ) {
+			case 0 :
+				Stage00 test = new Stage00();
+				yx0 = test.yx0;
+				yx1 = test.yx1;
+				yx2 = test.yx2;
+				yx3 = test.yx3;
+				yx4 = test.yx4;
+				yx5 = test.yx5;
+				yx6 = test.yx6;
+				break;
 			case 1 :
-				Stage01 stage = new Stage01();
-				yx0 = stage.yx0;
-				yx1 = stage.yx1;
-				yx2 = stage.yx2;
-				yx3 = stage.yx3;
-				yx4 = stage.yx4;
-				yx5 = stage.yx5;
-				yx6 = stage.yx6;
+				Stage01 stage01 = new Stage01();
+				yx0 = stage01.yx0;
+				yx1 = stage01.yx1;
+				yx2 = stage01.yx2;
+				yx3 = stage01.yx3;
+				yx4 = stage01.yx4;
+				yx5 = stage01.yx5;
+				yx6 = stage01.yx6;
 				break;
 			case 2 :
 				break;
@@ -75,6 +87,9 @@ public class BlocksMaker : MonoBehaviour {
 						break;
 					case 4 :
 						Instantiate(warpBlock, new Vector3(posx , posy, posz), Quaternion.identity);
+						break;
+					case 5 :
+						Instantiate(hard, new Vector3(posx , posy, posz), Quaternion.identity);
 						break;
 				}
 			}

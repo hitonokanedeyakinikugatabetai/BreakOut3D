@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 		// マウスカーソルを映さない
 		Cursor.visible = false;
 		// ステージの番号を設定
-		stageNum = 1;
+		// stageNum = 1;
 		// ステージ番号のブロック配置の読み込み
 		blocksMaker = new BlocksMaker(stageNum);
 		rem = 3; // 残機初期化
