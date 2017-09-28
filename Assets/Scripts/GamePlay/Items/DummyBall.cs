@@ -10,11 +10,12 @@ public Vector3 first; // 初速度
 		transform.GetComponent<Rigidbody>().velocity = first; // 初速度を追加
 	}
 	void Update() {
-		// ブロックが0個なら
-		if ( GameManager.blockCt == 0 ) {
+		// ブロックが0個、またはGAMEOVERなら
+		if ( GameManager.blockCt == 0 || GameManager.rem < 0 ) {
 			// 消去
 			Destroy(gameObject);
 		}
+		
 	}
 	//衝突判定
 	void OnCollisionEnter(Collision col) {
