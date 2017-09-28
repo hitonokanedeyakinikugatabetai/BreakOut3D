@@ -7,13 +7,15 @@ public class Ball : MonoBehaviour {
 	public Vector3 first; // 初速度
 	public GameObject lineX, lineY, lineZ; // ガイドラインプレハブ
 	private GameObject player; // プレイヤー
-	private AudioSource[] audioSources; // 効果音
+	private AudioSource[] audioSources; // 以下 効果音
 	private AudioSource normalSound;
 	private AudioSource missSound;
+	private AudioSource itemSound;
 	void Start () {
 		audioSources = GetComponents<AudioSource>(); // 効果音を追加
 		normalSound = audioSources[0];
 		missSound = audioSources[1];
+		itemSound = audioSources[2];
 		player = GameObject.Find("Player(Clone)");
 		transform.GetComponent<Rigidbody>().velocity = first; // 初速度を追加
 		// プレイヤーの位置にガイドライン生成
@@ -61,6 +63,13 @@ public class Ball : MonoBehaviour {
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
+		}
+		// アイテムブロックに当たったとき
+		if ( col.gameObject.tag == "Item" ) {
+			// 効果音を再生
+			AudioSource.PlayClipAtPoint(itemSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(itemSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(itemSound.clip, transform.position);
 		}
 	}
 }
