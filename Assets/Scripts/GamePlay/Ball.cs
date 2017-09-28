@@ -7,9 +7,13 @@ public class Ball : MonoBehaviour {
 	public Vector3 first; // 初速度
 	public GameObject lineX, lineY, lineZ; // ガイドラインプレハブ
 	private GameObject player; // プレイヤー
-	private AudioSource normalSound; // 効果音
+	private AudioSource[] audioSources; // 効果音
+	private AudioSource normalSound;
+	private AudioSource missSound;
 	void Start () {
-		normalSound = GetComponent<AudioSource>();
+		audioSources = GetComponents<AudioSource>(); // 効果音を追加
+		normalSound = audioSources[0];
+		missSound = audioSources[1];
 		player = GameObject.Find("Player(Clone)");
 		transform.GetComponent<Rigidbody>().velocity = first; // 初速度を追加
 		// プレイヤーの位置にガイドライン生成
@@ -32,8 +36,14 @@ public class Ball : MonoBehaviour {
 	}
 	//衝突判定
 	void OnCollisionEnter(Collision col) {
-		// 床に当たったとき残機を減らして消去
+		// 床に当たったとき
 		if ( col.gameObject.tag == "Bottom" ) {
+			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
+			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
+			// 残機を減らす
 			GameManager.rem--;
 			GameManager.ballAlive = false;
 			// 消去
