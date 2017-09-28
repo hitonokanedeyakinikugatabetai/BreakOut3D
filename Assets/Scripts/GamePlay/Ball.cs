@@ -38,6 +38,7 @@ public class Ball : MonoBehaviour {
 	void OnCollisionEnter(Collision col) {
 		// 床に当たったとき
 		if ( col.gameObject.tag == "Bottom" ) {
+			// 効果音を再生
 			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(missSound.clip, transform.position);
@@ -54,6 +55,7 @@ public class Ball : MonoBehaviour {
 		}
 		// ノーマルブロックに当たったとき
 		if ( col.gameObject.tag == "Normal" ) {
+			// 効果音を再生
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
 			AudioSource.PlayClipAtPoint(normalSound.clip, transform.position);
